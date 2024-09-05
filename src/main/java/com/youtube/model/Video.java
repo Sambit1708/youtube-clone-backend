@@ -1,15 +1,15 @@
 package com.youtube.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Set;
 
-@Document(value = "Video")
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,10 +22,10 @@ public class Video {
     private String userId;
     private Integer likes;
     private Integer disLikes;
-    private Set<String> tags;
+//    private Set<String> tags;
     private String videoUrl;
     private VideoStatus videoStatus;
     private Integer ViewCount;
     private String thumbnailUrl;
-    private List<Comment> commentList;
+//    private List<Comment> commentList;
 }
