@@ -1,31 +1,46 @@
 package com.youtube.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
-import java.util.Set;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Video {
+@Entity
+@Table(name = "videos")
+public class Video extends BaseEntity {
 
-    @Id
-    private String id;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private User user;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
-    private String userId;
-    private Integer likes;
-    private Integer disLikes;
-//    private Set<String> tags;
+
+    @Column(nullable = false)
     private String videoUrl;
-    private VideoStatus videoStatus;
-    private Integer ViewCount;
+
+    @Column
     private String thumbnailUrl;
-//    private List<Comment> commentList;
+
+    @Column
+    private Long views = 0L;
+
+    @Column
+    private Integer duration;
+
+    @Enumerated(EnumType.STRING)
+    private VideoStatus videoStatus;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "video")
+    private List<Comment> comments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "video")
+    private List<Like> likes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "video")
+    private List<History> histories;
 }

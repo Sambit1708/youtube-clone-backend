@@ -1,17 +1,15 @@
 package com.youtube.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "comments")
-public class Comment extends BaseEntity {
-
-    @Column(length = 500)
-    private String commentText;
+public class History extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
@@ -19,7 +17,5 @@ public class Comment extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Video video;
 
-    private Integer dislikeCount;
-
-    private Integer likeCount;
+    private LocalDateTime watchedAt;
 }
