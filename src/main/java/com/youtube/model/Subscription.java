@@ -1,9 +1,13 @@
 package com.youtube.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "subscriptions")
 public class Subscription extends BaseEntity {

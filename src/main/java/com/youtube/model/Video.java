@@ -1,12 +1,15 @@
 package com.youtube.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.UuidGenerator;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "videos")
 public class Video extends BaseEntity {
